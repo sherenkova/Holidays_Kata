@@ -15,4 +15,8 @@ public class DatesUtility {
 	    Date d1 = df.parse(date1);
 		Date d2 = df.parse(date2);
 	}
+	
+	public static Date least(Date a, Date b) {
+	    return a == null ? b : (b == null ? a : (a.before(b) ? a : b));
+	}
 }
