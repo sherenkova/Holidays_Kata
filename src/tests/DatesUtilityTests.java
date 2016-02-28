@@ -132,4 +132,46 @@ public class DatesUtilityTests {
 		
 		assertEquals(util.isDateRangeInsideRange("06/11/2013", "29/01/2013"), false);
 	}
+	
+	@Test
+	public void testisDateRangeOutsideRangeInside() throws ParseException {
+		DatesUtility util = new DatesUtility("29/02/2016", "06/12/2016");
+		
+		assertEquals(util.isDateRangeOutsideRange("29/03/2016", "06/11/2016"), false);
+	}
+	
+	@Test
+	public void testisDateRangeOutsideRangeInsideReverse() throws ParseException {
+		DatesUtility util = new DatesUtility("29/02/2016", "06/12/2016");
+		
+		assertEquals(util.isDateRangeOutsideRange("06/11/2016", "29/03/2016"), false);
+	}
+	
+	@Test
+	public void testisDateRangeOutsideRangeCrossed() throws ParseException {
+		DatesUtility util = new DatesUtility("29/02/2016", "06/12/2016");
+		
+		assertEquals(util.isDateRangeOutsideRange("29/01/2016", "06/11/2016"), false);
+	}
+	
+	@Test
+	public void testisDateRangeOutsideRangeCrossedReverse() throws ParseException {
+		DatesUtility util = new DatesUtility("29/02/2016", "06/12/2016");
+		
+		assertEquals(util.isDateRangeOutsideRange("06/11/2016", "29/01/2016"), false);
+	}
+	
+	@Test
+	public void testisDateRangeOutsideRangeOutside() throws ParseException {
+		DatesUtility util = new DatesUtility("29/02/2016", "06/12/2016");
+		
+		assertEquals(util.isDateRangeOutsideRange("29/01/2013", "06/11/2013"), true);
+	}
+	
+	@Test
+	public void testisDateRangeOutsideRangeOutsideReverse() throws ParseException {
+		DatesUtility util = new DatesUtility("29/02/2016", "06/12/2016");
+		
+		assertEquals(util.isDateRangeOutsideRange("06/11/2013", "29/01/2013"), true);
+	}
 }
