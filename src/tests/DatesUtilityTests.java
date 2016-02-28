@@ -76,4 +76,18 @@ public class DatesUtilityTests {
 		
 		assertEquals(util.getEndDate(), d1);
 	}
+	
+	@Test
+	public void testInInRangeOutOfRange() throws ParseException {
+		DatesUtility util = new DatesUtility("29/02/2016", "06/12/2016");
+		
+		assertEquals(util.isDateInsideRange("27/04/2015"), false);
+	}
+	
+	@Test
+	public void testInInRangeInRange() throws ParseException {
+		DatesUtility util = new DatesUtility("29/02/2016", "06/12/2016");
+		
+		assertEquals(util.isDateInsideRange("27/04/2016"), true);
+	}
 }

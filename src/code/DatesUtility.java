@@ -32,4 +32,12 @@ public class DatesUtility {
 	{
 		return endDate;
 	}
+	
+	public Boolean isDateInsideRange(String date) throws ParseException
+	{
+		DateFormat df = new SimpleDateFormat("dd/MM/yyyy", Locale.ENGLISH);
+	    Date d = df.parse(date);
+	    
+	    return d.after(startDate) && d.before(endDate);
+	}
 }
