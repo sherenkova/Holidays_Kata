@@ -58,4 +58,22 @@ public class DatesUtilityTests {
 		
 		assertEquals(d2, d3);
 	}
+	
+	@Test
+	public void testCorrectStartDate() throws ParseException {
+		DatesUtility util = new DatesUtility("29/02/2016", "06/12/2016");
+		DateFormat df = new SimpleDateFormat("dd/MM/yyyy", Locale.ENGLISH);
+	    Date d1 = df.parse("29/02/2016");
+		
+		assertEquals(util.getStartDate(), d1);
+	}
+	
+	@Test
+	public void testCorrectEndDate() throws ParseException {
+		DatesUtility util = new DatesUtility("29/02/2016", "06/12/2016");
+		DateFormat df = new SimpleDateFormat("dd/MM/yyyy", Locale.ENGLISH);
+	    Date d1 = df.parse("06/12/2016");
+		
+		assertEquals(util.getEndDate(), d1);
+	}
 }

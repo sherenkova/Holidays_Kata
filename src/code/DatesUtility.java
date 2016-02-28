@@ -14,9 +14,22 @@ public class DatesUtility {
 		DateFormat df = new SimpleDateFormat("dd/MM/yyyy", Locale.ENGLISH);
 	    Date d1 = df.parse(date1);
 		Date d2 = df.parse(date2);
+		
+		startDate = least(d1, d2);
+		endDate = startDate == d1 ? d2 : d1;
 	}
 	
 	public static Date least(Date a, Date b) {
 	    return a == null ? b : (b == null ? a : (a.before(b) ? a : b));
+	}
+	
+	public Date getStartDate()
+	{
+		return startDate;
+	}
+	
+	public Date getEndDate()
+	{
+		return endDate;
 	}
 }
