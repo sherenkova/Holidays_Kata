@@ -40,4 +40,16 @@ public class DatesUtility {
 	    
 	    return d.after(startDate) && d.before(endDate);
 	}
+	
+	public Boolean isDateRangeInsideRange(String date1, String date2) throws ParseException
+	{
+		DateFormat df = new SimpleDateFormat("dd/MM/yyyy", Locale.ENGLISH);
+	    Date d1 = df.parse(date1);
+		Date d2 = df.parse(date2);
+		
+		Date sd = least(d1, d2);
+		Date ed = sd == d1 ? d2 : d1;
+	    
+	    return sd.after(startDate) && ed.before(endDate);
+	}
 }

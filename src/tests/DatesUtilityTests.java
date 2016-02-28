@@ -78,16 +78,58 @@ public class DatesUtilityTests {
 	}
 	
 	@Test
-	public void testInInRangeOutOfRange() throws ParseException {
+	public void testIsInRangeOutOfRange() throws ParseException {
 		DatesUtility util = new DatesUtility("29/02/2016", "06/12/2016");
 		
 		assertEquals(util.isDateInsideRange("27/04/2015"), false);
 	}
 	
 	@Test
-	public void testInInRangeInRange() throws ParseException {
+	public void testIsInRangeInRange() throws ParseException {
 		DatesUtility util = new DatesUtility("29/02/2016", "06/12/2016");
 		
 		assertEquals(util.isDateInsideRange("27/04/2016"), true);
+	}
+	
+	@Test
+	public void testisDateRangeInsideRangeInside() throws ParseException {
+		DatesUtility util = new DatesUtility("29/02/2016", "06/12/2016");
+		
+		assertEquals(util.isDateRangeInsideRange("29/03/2016", "06/11/2016"), true);
+	}
+	
+	@Test
+	public void testisDateRangeInsideRangeInsideReverse() throws ParseException {
+		DatesUtility util = new DatesUtility("29/02/2016", "06/12/2016");
+		
+		assertEquals(util.isDateRangeInsideRange("06/11/2016", "29/03/2016"), true);
+	}
+	
+	@Test
+	public void testisDateRangeInsideRangeCrossed() throws ParseException {
+		DatesUtility util = new DatesUtility("29/02/2016", "06/12/2016");
+		
+		assertEquals(util.isDateRangeInsideRange("29/01/2016", "06/11/2016"), false);
+	}
+	
+	@Test
+	public void testisDateRangeInsideRangeCrossedReverse() throws ParseException {
+		DatesUtility util = new DatesUtility("29/02/2016", "06/12/2016");
+		
+		assertEquals(util.isDateRangeInsideRange("06/11/2016", "29/01/2016"), false);
+	}
+	
+	@Test
+	public void testisDateRangeInsideRangeOutside() throws ParseException {
+		DatesUtility util = new DatesUtility("29/02/2016", "06/12/2016");
+		
+		assertEquals(util.isDateRangeInsideRange("29/01/2013", "06/11/2013"), false);
+	}
+	
+	@Test
+	public void testisDateRangeInsideRangeOutsideReverse() throws ParseException {
+		DatesUtility util = new DatesUtility("29/02/2016", "06/12/2016");
+		
+		assertEquals(util.isDateRangeInsideRange("06/11/2013", "29/01/2013"), false);
 	}
 }
