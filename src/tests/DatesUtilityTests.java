@@ -174,4 +174,18 @@ public class DatesUtilityTests {
 		
 		assertEquals(util.isDateRangeOutsideRange("06/11/2013", "29/01/2013"), true);
 	}
+	
+	@Test
+	public void testGetDaysCount() throws ParseException {
+		DatesUtility util = new DatesUtility("29/02/2016", "06/02/2016");
+		
+		assertEquals(util.getDaysCount(), (Integer)23);
+	}
+	
+	@Test
+	public void testGetDaysCountOneMonth() throws ParseException {
+		DatesUtility util = new DatesUtility("01/01/1000", "01/02/1000");
+		
+		assertEquals(util.getDaysCount(), (Integer)31);
+	}
 }

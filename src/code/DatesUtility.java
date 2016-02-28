@@ -64,4 +64,9 @@ public class DatesUtility {
 	    
 	    return sd.after(endDate) || ed.before(startDate);
 	}
+	
+	public Integer getDaysCount()
+	{
+        return (int)( (endDate.getTime() - startDate.getTime()) / (1000 * 60 * 60 * 24));
+	}
 }
