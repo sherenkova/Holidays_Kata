@@ -14,9 +14,8 @@ public class DatesUtility {
 	Calendar endCalendar;
 	public DatesUtility(String date1, String date2) throws ParseException
 	{
-		DateFormat df = new SimpleDateFormat("dd/MM/yyyy", Locale.ENGLISH);
-	    Date d1 = df.parse(date1);
-		Date d2 = df.parse(date2);
+	    Date d1 = parseDate(date1);
+		Date d2 = parseDate(date2);
 		
 		startDate = least(d1, d2);
 		endDate = startDate == d1 ? d2 : d1;
@@ -25,6 +24,12 @@ public class DatesUtility {
 		endCalendar = Calendar.getInstance();
 		startCalendar.setTime(startDate);
 		endCalendar.setTime(endDate);
+	}
+	
+	protected DateFormat df = new SimpleDateFormat("dd/MM/yyyy", Locale.ENGLISH);;
+	protected Date parseDate(String date) throws ParseException
+	{
+		return df.parse(date);
 	}
 	
 	public static Date least(Date a, Date b) {
@@ -43,17 +48,15 @@ public class DatesUtility {
 	
 	public Boolean isDateInsideRange(String date) throws ParseException
 	{
-		DateFormat df = new SimpleDateFormat("dd/MM/yyyy", Locale.ENGLISH);
-	    Date d = df.parse(date);
+	    Date d = parseDate(date);
 	    
 	    return d.after(startDate) && d.before(endDate);
 	}
 	
 	public Boolean isDateRangeInsideRange(String date1, String date2) throws ParseException
 	{
-		DateFormat df = new SimpleDateFormat("dd/MM/yyyy", Locale.ENGLISH);
-	    Date d1 = df.parse(date1);
-		Date d2 = df.parse(date2);
+	    Date d1 = parseDate(date1);
+		Date d2 = parseDate(date2);
 		
 		Date sd = least(d1, d2);
 		Date ed = sd == d1 ? d2 : d1;
@@ -63,9 +66,8 @@ public class DatesUtility {
 	
 	public Boolean isDateRangeOutsideRange(String date1, String date2) throws ParseException
 	{
-		DateFormat df = new SimpleDateFormat("dd/MM/yyyy", Locale.ENGLISH);
-	    Date d1 = df.parse(date1);
-		Date d2 = df.parse(date2);
+	    Date d1 = parseDate(date1);
+		Date d2 = parseDate(date2);
 		
 		Date sd = least(d1, d2);
 		Date ed = sd == d1 ? d2 : d1;
