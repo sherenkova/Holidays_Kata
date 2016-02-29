@@ -9,7 +9,9 @@ import java.util.Locale;
 
 public class DatesUtility {
 	Date startDate;
+	Calendar startCalendar;
 	Date endDate;
+	Calendar endCalendar;
 	public DatesUtility(String date1, String date2) throws ParseException
 	{
 		DateFormat df = new SimpleDateFormat("dd/MM/yyyy", Locale.ENGLISH);
@@ -18,6 +20,11 @@ public class DatesUtility {
 		
 		startDate = least(d1, d2);
 		endDate = startDate == d1 ? d2 : d1;
+		
+		startCalendar = Calendar.getInstance();
+		endCalendar = Calendar.getInstance();
+		startCalendar.setTime(startDate);
+		endCalendar.setTime(endDate);
 	}
 	
 	public static Date least(Date a, Date b) {
@@ -73,20 +80,12 @@ public class DatesUtility {
 	
 	public Boolean isSameMonth()
 	{
-		Calendar cal1 = Calendar.getInstance();
-		Calendar cal2 = Calendar.getInstance();
-		cal1.setTime(startDate);
-		cal2.setTime(endDate);
-        return cal1.get(Calendar.YEAR) == cal2.get(Calendar.YEAR) &&
-                cal1.get(Calendar.MONTH) == cal2.get(Calendar.MONTH);
+        return startCalendar.get(Calendar.YEAR) == endCalendar.get(Calendar.YEAR) &&
+        		startCalendar.get(Calendar.MONTH) == endCalendar.get(Calendar.MONTH);
 	}
 	
 	public Boolean isSameYear()
 	{
-		Calendar cal1 = Calendar.getInstance();
-		Calendar cal2 = Calendar.getInstance();
-		cal1.setTime(startDate);
-		cal2.setTime(endDate);
-        return cal1.get(Calendar.YEAR) == cal2.get(Calendar.YEAR);
+        return startCalendar.get(Calendar.YEAR) == endCalendar.get(Calendar.YEAR);
 	}
 }
