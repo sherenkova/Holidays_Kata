@@ -3,6 +3,7 @@ package code;
 import java.text.DateFormat;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
+import java.util.Calendar;
 import java.util.Date;
 import java.util.Locale;
 
@@ -68,5 +69,15 @@ public class DatesUtility {
 	public Integer getDaysCount()
 	{
         return (int)( (endDate.getTime() - startDate.getTime()) / (1000 * 60 * 60 * 24));
+	}
+	
+	public Boolean isSameMonth()
+	{
+		Calendar cal1 = Calendar.getInstance();
+		Calendar cal2 = Calendar.getInstance();
+		cal1.setTime(startDate);
+		cal2.setTime(endDate);
+        return cal1.get(Calendar.YEAR) == cal2.get(Calendar.YEAR) &&
+                cal1.get(Calendar.MONTH) == cal2.get(Calendar.MONTH);
 	}
 }
