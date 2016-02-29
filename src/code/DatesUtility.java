@@ -80,4 +80,13 @@ public class DatesUtility {
         return cal1.get(Calendar.YEAR) == cal2.get(Calendar.YEAR) &&
                 cal1.get(Calendar.MONTH) == cal2.get(Calendar.MONTH);
 	}
+	
+	public Boolean isSameYear()
+	{
+		Calendar cal1 = Calendar.getInstance();
+		Calendar cal2 = Calendar.getInstance();
+		cal1.setTime(startDate);
+		cal2.setTime(endDate);
+        return cal1.get(Calendar.YEAR) == cal2.get(Calendar.YEAR);
+	}
 }

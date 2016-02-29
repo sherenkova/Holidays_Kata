@@ -202,4 +202,18 @@ public class DatesUtilityTests {
 		
 		assertEquals(util.isSameMonth(), true);
 	}
+	
+	@Test
+	public void testIsSameYearFalse() throws ParseException {
+		DatesUtility util = new DatesUtility("01/01/1001", "01/02/1000");
+		
+		assertEquals(util.isSameYear(), false);
+	}
+	
+	@Test
+	public void testIsSameYearTrue() throws ParseException {
+		DatesUtility util = new DatesUtility("01/02/2000", "29/02/2000");
+		
+		assertEquals(util.isSameYear(), true);
+	}
 }
